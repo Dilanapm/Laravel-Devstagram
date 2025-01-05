@@ -18,7 +18,7 @@ class PostController extends Controller
         // dd('desde muro');
         // dd($user->username);
 
-        $posts = Post::where('user_id',$user->id)->paginate(10);
+        $posts = Post::where('user_id',$user->id)->latest()->paginate(10);
 
 
         return view('dashboard',[

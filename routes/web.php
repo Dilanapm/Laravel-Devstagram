@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\Homecontroller;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PerfilController;
 use Illuminate\Support\Facades\Route;
@@ -24,9 +25,7 @@ use App\Http\Controllers\ComentarioController;
 |
 */
 
-Route::get('/', function () {
-    return view('principal');
-});
+Route::get('/', Homecontroller::class)->name('home');
 
 // Rutas para el controlador Register
 Route::get('/crear-cuenta',[RegisterController::class, 'index'])->name('register');
