@@ -42,6 +42,35 @@
                     {{ $user->posts->count()}}
                     <span class=" font-normal">Posts</span>
                 </p>
+               @auth
+                @if ($user->id !== auth()->user()->id)
+                    @if($user->siguiendo(auth()->user()))
+                 {{-- "$user" es la persona que esta siendo visitada y "auth()->user" es la persona que lo esta visitando  --}}
+                        <form action="{{route('users.unfollow', $user)}}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <input 
+                            type="submit"
+                            class="bg-red-500 text-white uppercase rounded-lg px-3 py-1 cursor-pointer font-bold text-xs"
+                            value="Dejar de seguir"
+                            >
+                        </form>
+                    @else
+                        <form 
+                        method="POST"
+                        action="{{ route('users.follow', $user) }}" 
+                        
+                        >
+                        @csrf
+                        <input 
+                        type="submit"
+                        class="bg-blue-500 text-white uppercase rounded-lg px-3 py-1 cursor-pointer font-bold text-xs"
+                        value="seguir"
+                        >
+                        </form>
+                    @endif
+                @endif
+               @endauth
             </div>
             
 

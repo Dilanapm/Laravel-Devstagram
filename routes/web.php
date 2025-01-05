@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PerfilController;
 use Illuminate\Support\Facades\Route;
@@ -60,3 +61,7 @@ Route::post('/posts/{post}/Likes', [LikeController::class, 'store'])->name('post
 Route::delete('/posts/{post}/Likes', [LikeController::class, 'destroy'])->name('posts.likes.destroy');
 
 
+// Ruta para la funcionalidad de seguidores
+Route::post('/{user:username}/follow', [FollowerController::class, 'store'])->name('users.follow');
+
+Route::delete('/{user:username}/unfollow', [FollowerController::class, 'destroy'])->name('users.unfollow');
